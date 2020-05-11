@@ -1,0 +1,10 @@
+E:\projects\csharp\Net\NetTest\bin\Debug\NetTest.exe
+E:\projects\csharp\Net\NetTest\bin\Debug\NetTest.pdb
+E:\projects\csharp\Net\NetTest\bin\Debug\protobuf-net.dll
+E:\projects\csharp\Net\NetTest\bin\Debug\Net.pdb
+E:\projects\csharp\Net\NetTest\obj\Debug\NetTest.csprojAssemblyReference.cache
+E:\projects\csharp\Net\NetTest\obj\Debug\NetTest.csproj.CoreCompileInputs.cache
+E:\projects\csharp\Net\NetTest\obj\Debug\NetTest.csproj.CopyComplete
+E:\projects\csharp\Net\NetTest\obj\Debug\NetTest.exe
+E:\projects\csharp\Net\NetTest\obj\Debug\NetTest.pdb
+E:\projects\csharp\Net\NetTest\bin\Debug\Net.dll
