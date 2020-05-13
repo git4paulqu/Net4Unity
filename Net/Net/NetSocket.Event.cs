@@ -25,12 +25,20 @@ namespace Net
 
         }
 
+        protected void NotifyReceiveMessage(byte[] buffer, int offset, int count, EndPoint remote)
+        {
+            RawMessage message = RawMessage.Clone(buffer, offset, count);
+            message.remote = remote;
+            OnReceiveAsyncCallback(message);
+            RawMessage.Clear(message);
+        }
+
         protected virtual void OnReceiveAsyncCallback(RawMessage message)
         {
             onReceiveCallback.SafeInvoke(message);
         }
 
-        protected virtual bool OnEncodeSend(byte[] buffer, int offset, int count, byte[] data, out int packCount)
+        protected virtual bool OnEncodeSend(byte[] buffer, int offset, int count, byte[] data, int dataOffset, out int packCount)
         {
             packCount = count;
             return false;

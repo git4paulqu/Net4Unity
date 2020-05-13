@@ -1,4 +1,7 @@
-﻿namespace Net
+﻿using Net.UDP;
+using System.Net;
+
+namespace Net
 {
     public static class NetExtends
     {
@@ -15,6 +18,14 @@
             if (callback != null)
             {
                 callback.Invoke(message);
+            }
+        }
+
+        public static void SafeInvoke(this KCPHandleCallback callback, byte[] buffer, int offset, int count, EndPoint remote)
+        {
+            if (callback != null)
+            {
+                callback.Invoke(buffer, offset, count, remote);
             }
         }
     }

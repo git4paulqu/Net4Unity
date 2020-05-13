@@ -24,12 +24,12 @@ namespace Net.TCP
             Initialize(NetDefine.DEFAUT_IONUM);
         }
 
-        protected override bool OnEncodeSend(byte[] buffer, int offset, int count, byte[] data, out int packCount)
+        protected override bool OnEncodeSend(byte[] buffer, int offset, int count, byte[] data, int dataOffset, out int packCount)
         {
             int MESSAGE_LENGTH_SIZE = NetDefine.MESSAGE_LENGTH_SIZE;
             byte[] length = System.BitConverter.GetBytes(data.Length);
             System.Buffer.BlockCopy(length, 0, buffer, offset, MESSAGE_LENGTH_SIZE);
-            System.Buffer.BlockCopy(data, 0, buffer, offset + MESSAGE_LENGTH_SIZE, count);
+            System.Buffer.BlockCopy(data, dataOffset, buffer, offset + MESSAGE_LENGTH_SIZE, count);
             packCount = count + MESSAGE_LENGTH_SIZE;
             return true;
         }
@@ -54,8 +54,7 @@ namespace Net.TCP
 
                 if ((receiveBuffer.length - MESSAGE_LENGTH_SIZE) >= contentLength)
                 {
-                    RawMessage message = RawMessage.Clone(receiveBuffer.buffer, MESSAGE_LENGTH_SIZE, contentLength);
-                    OnReceiveAsyncCallback(message);
+                    NotifyReceiveMessage(receiveBuffer.buffer, MESSAGE_LENGTH_SIZE, contentLength, endPoint);
                     receiveBuffer.Clear(MESSAGE_LENGTH_SIZE + contentLength);
                 }
                 else

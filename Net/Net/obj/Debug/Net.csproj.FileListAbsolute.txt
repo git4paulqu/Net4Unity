@@ -5,4 +5,3 @@ E:\projects\csharp\Net\Net\bin\Debug\protobuf-net.dll
 E:\projects\csharp\Net\Net\obj\Debug\Net.csproj.CopyComplete
 E:\projects\csharp\Net\Net\obj\Debug\Net.dll
 E:\projects\csharp\Net\Net\obj\Debug\Net.pdb
-E:\projects\csharp\Net\Net\obj\Debug\Net.csprojAssemblyReference.cache

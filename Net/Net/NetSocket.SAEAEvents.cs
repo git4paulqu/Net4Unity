@@ -21,6 +21,11 @@ namespace Net
 
         protected void SendAsync(byte[] data)
         {
+            SendAsync(data, 0, data.Length);
+        }
+
+        protected void SendAsync(byte[] data, int offset, int count)
+        {
             if (!ready4Send)
             {
                 NetDebug.Log("[NetSocket] SendAsync, not ready for send.");
@@ -44,7 +49,7 @@ namespace Net
             SocketAsyncEventArgs saea = AllocSAEA();
             try
             {
-                EncodeSend(saea, data);
+                EncodeSend(saea, data, offset, count);
                 bool willRaiseEvent = socket.SendAsync(saea);
                 if (!willRaiseEvent)
                 {
@@ -58,6 +63,11 @@ namespace Net
         }
 
         protected void SendToAsync(EndPoint endPoint, byte[] data)
+        {
+            SendToAsync(endPoint, data, 0, data.Length);
+        }
+
+        protected void SendToAsync(EndPoint endPoint, byte[] data, int offset, int count)
         {
             if (null == data || data.Length == 0)
             {
@@ -76,7 +86,7 @@ namespace Net
             SocketAsyncEventArgs saea = AllocSAEA();
             try
             {
-                EncodeSend(saea, data);
+                EncodeSend(saea, data, offset, count);
                 saea.RemoteEndPoint = endPoint;
                 bool willRaiseEvent = socket.SendToAsync(saea);
                 if (!willRaiseEvent)
@@ -230,15 +240,14 @@ namespace Net
 
         #region Decode/Encode
 
-        private void EncodeSend(SocketAsyncEventArgs saea, byte[] data)
+        private void EncodeSend(SocketAsyncEventArgs saea, byte[] data, int offset, int count)
         {
             try
             {
                 byte[] buffer = saea.Buffer;
-                int offset = saea.Offset;
-                int count = data.Length;
+                int saeaOffset = saea.Offset;
                 int packCount = count;
-                if (OnEncodeSend(buffer, offset, count, data, out packCount))
+                if (OnEncodeSend(buffer, saeaOffset, count, data, offset, out packCount))
                 {
                     saea.SetBuffer(offset, packCount);
                 }
@@ -270,9 +279,7 @@ namespace Net
                         return;
                     }
 
-                    RawMessage message = RawMessage.Clone(buffer, offset, count);
-                    message.remote = saea.RemoteEndPoint;
-                    OnReceiveAsyncCallback(message);
+                    NotifyReceiveMessage(buffer, offset, count, saea.RemoteEndPoint);
                 }
             }
             catch (Exception ex)

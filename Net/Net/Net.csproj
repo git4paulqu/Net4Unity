@@ -46,23 +46,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BufferObject\UDPPacket.cs" />
     <Compile Include="Connection\TCP\Server\ConnectionMessage.cs" />
     <Compile Include="Connection\TCP\Server\CSConnection.cs" />
     <Compile Include="Connection\TCP\Server\TCPServer.cs" />
     <Compile Include="Connection\TCP\TCPClient.cs" />
     <Compile Include="Connection\TCP\TCPConnection.cs" />
+    <Compile Include="Connection\UDP\KCPConnection.cs" />
+    <Compile Include="Connection\UDP\KCP\KCPStateObject.cs" />
     <Compile Include="Connection\UDP\Server\UDPServer.cs" />
     <Compile Include="Connection\UDP\UDPConnection.cs" />
     <Compile Include="Container\ThreadSafedQueue.cs" />
     <Compile Include="Container\ThreadSafedStack.cs" />
     <Compile Include="Event\INetEventObject.cs" />
+    <Compile Include="KCP\KCP.cs" />
+    <Compile Include="KCP\LatencySimulator.cs" />
+    <Compile Include="KCP\Socket.cs" />
+    <Compile Include="KCP\Utils.cs" />
     <Compile Include="MemoryBufferStream.cs" />
+    <Compile Include="BufferObject\BufferObjectCache.cs" />
+    <Compile Include="BufferObject\BufferObject.cs" />
     <Compile Include="NetSocket.cs" />
     <Compile Include="NetSocket.Event.cs" />
     <Compile Include="NetSocket.SAEAEvents.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Event\INetEvent.cs" />
-    <Compile Include="RawMessage.cs" />
+    <Compile Include="BufferObject\RawMessage.cs" />
     <Compile Include="SAEA\SAEABuffer.cs" />
     <Compile Include="SAEA\SAEAMemory.cs" />
     <Compile Include="Setting\INetSetting.cs" />

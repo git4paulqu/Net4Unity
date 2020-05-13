@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Commond\Commond.cs" />
     <Compile Include="Commond\InputHandle.cs" />
+    <Compile Include="KCP\KCPTest.cs" />
     <Compile Include="PB\Data.cs" />
     <Compile Include="PB\PBTest.cs" />
     <Compile Include="Program.cs" />

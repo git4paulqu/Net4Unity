@@ -23,9 +23,12 @@ namespace Net.UDP
             ReceiveFromAsync(new IPEndPoint(IPAddress.Any, setting.port));
         }
 
-        public void Send(EndPoint remoterPoint, byte[] data)
+        protected override bool OnDecodeReceive(byte[] buffer, int offset, int count, EndPoint endPoint, out int error)
         {
-            SendToAsync(remoterPoint, data);
+            error = 0;
+
+
+            return true;
         }
 
         public UDPSetting setting { get; private set; }
