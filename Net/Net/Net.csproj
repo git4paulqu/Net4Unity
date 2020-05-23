@@ -46,23 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BufferObject\UDPPacket.cs" />
     <Compile Include="Connection\TCP\Server\ConnectionMessage.cs" />
     <Compile Include="Connection\TCP\Server\CSConnection.cs" />
     <Compile Include="Connection\TCP\Server\TCPServer.cs" />
     <Compile Include="Connection\TCP\TCPClient.cs" />
     <Compile Include="Connection\TCP\TCPConnection.cs" />
     <Compile Include="Connection\UDP\KCPConnection.cs" />
-    <Compile Include="Connection\UDP\KCP\KCPStateObject.cs" />
+    <Compile Include="Connection\UDP\KCPStateObject.cs" />
+    <Compile Include="Connection\UDP\Server\KCPServerHandle.cs" />
     <Compile Include="Connection\UDP\Server\UDPServer.cs" />
-    <Compile Include="Connection\UDP\UDPConnection.cs" />
     <Compile Include="Container\ThreadSafedQueue.cs" />
     <Compile Include="Container\ThreadSafedStack.cs" />
     <Compile Include="Event\INetEventObject.cs" />
-    <Compile Include="KCP\KCP.cs" />
-    <Compile Include="KCP\LatencySimulator.cs" />
-    <Compile Include="KCP\Socket.cs" />
-    <Compile Include="KCP\Utils.cs" />
+    <Compile Include="Connection\UDP\KCP\KCP.cs" />
     <Compile Include="MemoryBufferStream.cs" />
     <Compile Include="BufferObject\BufferObjectCache.cs" />
     <Compile Include="BufferObject\BufferObject.cs" />
@@ -80,6 +76,7 @@
     <Compile Include="Utility\NetDebug.cs" />
     <Compile Include="Utility\NetDefine.cs" />
     <Compile Include="Utility\NetExtends.cs" />
+    <Compile Include="Utility\NetUtility.Time.cs" />
     <Compile Include="Utility\NetUtility.cs" />
   </ItemGroup>
   <ItemGroup />

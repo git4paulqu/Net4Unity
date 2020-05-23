@@ -23,7 +23,7 @@ namespace Net
             return allocObject;
         }
 
-        public static void Recycle(BufferObject bufferObject)
+        public static void Free(BufferObject bufferObject)
         {
             string key = bufferObject.GetType().ToString();
             Stack<BufferObject> stack = GetCacheStack(key);

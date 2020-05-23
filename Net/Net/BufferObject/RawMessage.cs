@@ -5,9 +5,9 @@ namespace Net
 {
     public class RawMessage : BufferObject, INetEventObject
     {
-        public static RawMessage Clone(byte[] data, int offset, int length)
+        public static RawMessage Clone(byte[] data, int offset, int length, int capacity)
         {
-            RawMessage message = BufferObjectCache.Alloc<RawMessage>(NetDefine.MAX_MESSAGE_LENGTH);
+            RawMessage message = BufferObjectCache.Alloc<RawMessage>(capacity);
             if (null == data)
             {
                 message.size = 0;
@@ -21,7 +21,7 @@ namespace Net
 
         public static void Clear(RawMessage rawMessage)
         {
-            BufferObjectCache.Recycle(rawMessage);
+            BufferObjectCache.Free(rawMessage);
         }
 
         public override void OnRecycle()

@@ -26,7 +26,7 @@ namespace Net
             return saea;
         }
 
-        public void Recycle(SocketAsyncEventArgs saea)
+        public void Free(SocketAsyncEventArgs saea)
         {
             buffer.UnBind(saea);
             if (null != pool)

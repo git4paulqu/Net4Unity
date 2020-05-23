@@ -45,8 +45,8 @@ namespace Net.TCP
                 int contentLength = System.BitConverter.ToInt32(receiveBuffer.buffer, 0);
 
                 if ((contentLength < 0) ||
-                    (contentLength > NetDefine.MAX_MESSAGE_LENGTH) ||
-                    (receiveBuffer.length > NetDefine.MAX_MESSAGE_LENGTH))
+                    (contentLength > NetDefine.MAX_TCP_MESSAGE_LENGTH) ||
+                    (receiveBuffer.length > NetDefine.MAX_TCP_MESSAGE_LENGTH))
                 {
                     error = 1;
                     return false;

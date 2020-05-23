@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;SERVER;CLIENT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Commond\Commond.cs" />
     <Compile Include="Commond\InputHandle.cs" />
-    <Compile Include="KCP\KCPTest.cs" />
     <Compile Include="PB\Data.cs" />
     <Compile Include="PB\PBTest.cs" />
     <Compile Include="Program.cs" />

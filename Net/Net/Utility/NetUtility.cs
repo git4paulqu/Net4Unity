@@ -2,7 +2,7 @@
 
 namespace Net
 {
-    public class NetUtility
+    public partial class NetUtility
     {
         public static IPEndPoint GetIPEndPoint(string host, int port)
         {

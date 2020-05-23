@@ -22,7 +22,12 @@ namespace Net.TCP
 
         public void Send(byte[] data)
         {
-            SendAsync(data);
+            Send(data, 0, data.Length);
+        }
+
+        public void Send(byte[] data, int offset, int count)
+        {
+            SendAsync(data, offset, count);
         }
 
         protected override void OnSAEACompletedCallback(object sender, SocketAsyncEventArgs saea)

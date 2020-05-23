@@ -38,11 +38,11 @@ namespace Net
                 return;
             }
 
-            if (data.Length > NetDefine.MAX_MESSAGE_LENGTH)
+            if (data.Length > NetDefine.MAX_TCP_MESSAGE_LENGTH)
             {
                 NetDebug.Error("[Netsocket] SendAsync, the data length:{0} is greater message max length:{1}.",
                                data.Length,
-                               NetDefine.MAX_MESSAGE_LENGTH);
+                               NetDefine.MAX_TCP_MESSAGE_LENGTH);
                 return;
             }
 
@@ -75,11 +75,11 @@ namespace Net
                 return;
             }
 
-            if (data.Length > NetDefine.MAX_MESSAGE_LENGTH)
+            if (data.Length > NetDefine.MAX_TCP_MESSAGE_LENGTH)
             {
                 NetDebug.Error("[Netsocket] SendToAsync, the data length:{0} is greater message max length:{1}.",
                                data.Length,
-                               NetDefine.MAX_MESSAGE_LENGTH);
+                               NetDefine.MAX_TCP_MESSAGE_LENGTH);
                 return;
             }
 
@@ -89,6 +89,7 @@ namespace Net
                 EncodeSend(saea, data, offset, count);
                 saea.RemoteEndPoint = endPoint;
                 bool willRaiseEvent = socket.SendToAsync(saea);
+
                 if (!willRaiseEvent)
                 {
                     SendToAsyncCallback(saea);
@@ -253,7 +254,7 @@ namespace Net
                 }
                 else
                 {
-                    saea.SetBuffer(data, 0, data.Length);
+                    saea.SetBuffer(data, offset, count);
                 }
             }
             catch (Exception ex)
@@ -309,8 +310,8 @@ namespace Net
             {
                 return;
             }
-            saeaMemory.Recycle(saea);
-            NetDebug.Log("Recycle Send SAEA count:{0} --{1}", saeaMemory.count, GetType().ToString());
+            saeaMemory.Free(saea);
+            //NetDebug.Log("Recycle Send SAEA count:{0} --{1}", saeaMemory.count, GetType().ToString());
         }
 
         private void CloseSAEA(SocketAsyncEventArgs saea)

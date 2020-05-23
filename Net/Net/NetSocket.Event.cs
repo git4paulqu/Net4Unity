@@ -27,7 +27,7 @@ namespace Net
 
         protected void NotifyReceiveMessage(byte[] buffer, int offset, int count, EndPoint remote)
         {
-            RawMessage message = RawMessage.Clone(buffer, offset, count);
+            RawMessage message = RawMessage.Clone(buffer, offset, count, NetDefine.MAX_TCP_MESSAGE_LENGTH);
             message.remote = remote;
             OnReceiveAsyncCallback(message);
             RawMessage.Clear(message);

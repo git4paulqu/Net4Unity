@@ -36,17 +36,27 @@ namespace Net.UDP
 
         public void Send(byte[] data)
         {
-            if (null != _kcpObject)
-            {
-                _kcpObject.Send(data, 0, data.Length);
-            }
+            Send(data, 0, data.Length);
         }
 
-        public void Update(UInt32 current)
+        public void Send(byte[] data, int offset, int count)
         {
             if (null != _kcpObject)
             {
-                _kcpObject.Update(current);
+                _kcpObject.Send(data, offset, count);
+            }
+            else
+            {
+                NetDebug.Log("KCP connection send error, the kcp object is not be null.");
+            }
+        }
+
+        public void Update()
+        {
+            UInt32 iclock = NetUtility.Time.GetIclock();
+            if (null != _kcpObject)
+            {
+                _kcpObject.Update(iclock);
             }
         }
 
@@ -74,11 +84,11 @@ namespace Net.UDP
         private void InitKCP(UDPSetting setting)
         {
             _kcpObject = new KCPStateObject();
-            _kcpObject.Initialize(this);
+            _kcpObject.Initialize(this, setting.kcp);
             _kcpObject.remote = remoterPoint;
 
             _kcpObject.sendHandle = OnKCPSend;
-            _kcpObject.receiveHandle = OnKCPSend;
+            _kcpObject.receiveHandle = OnKCPReceive;
         }
 
         private void OnKCPSend(byte[] buffer, int offset, int count, EndPoint endPoint)
